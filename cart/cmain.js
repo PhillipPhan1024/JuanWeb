@@ -1,3 +1,17 @@
+let cartIcon = document.querySelector('#cart-icon');
+let cart = document.querySelector('.cart');
+let closeCart = document.querySelector("#close-cart");
+
+//open Cart
+cartIcon.onclick = () => {
+  cart.classList.add("active");
+}
+//close cart
+closeCart.onclick = () => {
+  cart.classList.remove("active");
+}
+
+//cart Working JS
 
 if (document.readyState == 'loading') {
 
@@ -10,9 +24,7 @@ if (document.readyState == 'loading') {
     ready();
   
   }
-  
-  
-  
+
   //remove from cart
   
   function ready() {
@@ -24,12 +36,15 @@ if (document.readyState == 'loading') {
       var button = removeCartButtons[i];
   
       button.addEventListener('click', removeCartItem);
-  
+      
+      var quantityInputs = document.getElementsByClassName("cart-quantity");
+      for(var i = 0; i < quantityInputs.length; i++) {
+        var input = quantityInputs[i];
+        input.addEventListener("change", quantityChanged);
+      }
     }
   
   }
-  
-  
   
   function removeCartItem(event) {
   
@@ -41,6 +56,12 @@ if (document.readyState == 'loading') {
   
   }
   
+  function quantityChanged(event) {
+    var input = event.target
+    if (NaN(input.value) || input.value <= 0) {
+      input.value = 1;
+    }
+  }
   
   
   //add to cart
@@ -57,75 +78,39 @@ if (document.readyState == 'loading') {
   
   
   
+  
   function addCartClicked(event) {
   
     var button = event.target;
   
     var shopProducts = button.parentElement;
   
-    var title = shopProducts.getElementsByClassName("img-title")[0].innerText;
+    var title = shopProducts.getElementsByClassName("product-title")[0].innerText;
   
-    var text = shopProducts.getElementsByClassName("img-text")[0].innerText;
+    var productImg = shopProducts.getElementsByClassName("product-img")[0].src;
   
-    var bild = shopProducts.getElementsByClassName("itemBox-img")[0].src;
-  
-  
-  
-    var cartShopBox = document.createElement("div");
-  
-    cartShopBox.classList.add("cart-box");
-  
-    var cartitems = document.getElementsByClassName("cart-content")[0];
-  
-    var cartitemsNames = cartitems.getElementsByClassName("cart-ptitle");
-  
-    for (var i = 0; i < cartitemsNames.length; i++) {
-  
-      if (cartitemsNames[i].innerText == title) {
-  
-        alert("Sie haben dieses Produkt bereits zu Ihren Favoriten hinzugefügt");
-  
-        return;
-  
-      }
-  
-    }
-  
-  
-  
-    var cartBoxContent = `
-  
-      <img src="${bild}" class="cart-img">
-  
-      <div class="detail-box">
-  
-        <div class="cart-ptitle">${title}</div>
-  
-        <div class="cart-content">${text}</div>
-  
-      </div>
-  
-      <i class ="fa fa-trash-o cart-remove"></i>
-  
-      `;
-  
-  
-  
-    cartShopBox.innerHTML = cartBoxContent;
-  
-    cartitems.append(cartShopBox);
-  
-    cartShopBox
-  
-      .getElementsByClassName('cart-remove')[0]
-  
-      .addEventListener('click', removeCartItem);
+    addProductToCart(title, productImg);
   
     savelocalstorage();
   
   }
   
+  function addProductToCart(title, productImg){
+    var cartShopBox = document.createElement("div");
+    cartShopBox.classList.add('cart-box');
+    var cartItems = document.getElementsByClassName('cart-content');
+    var cartItemsNames = cartItems.getElementsByClassName('cart-product-title');
+    for(var i = 0; i < addCart.length; i++) {
+      alert("You have already added this item to your cart!");
+      return;
+    }
+  }
+  var cartBoxContent = '<img src="${productImg}.jpg" class="cart-img"><div class="detail-box"><div class="cart-product-title">${title}</div><input type="number" value="1" class="cart-quantity"></div><!-- remove cart --><i class="bx bxs-trash-alt cart-remove"></i>';
   
+  cartShopBox.innerHTML = cartBoxContent;
+  cartItems.append(cartShopBox)
+  cartShopBox.getElementsByClassName('cart-remove')[0].addEventListener('click', removeCartItem)
+  cartShopBox.getElementsByClassName('cart-quantity')[0].addEventListener('change', quantityChanged)
   
   //LOCALSTORAGE!!!!!
   
