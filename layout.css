@@ -12,6 +12,7 @@ body{
 .navbar{
     display: flex; 
     align-items: center;
+    box-shadow: 0 1px 4px hsl(0 4% 15% / 10%);
     padding: 20px;
 }
 nav{
@@ -34,10 +35,8 @@ p{
     color: #555;
 }
 .container{
-    max-width: 1300px;
+    width: 100%;
     margin: auto;
-    padding-left: 25px;
-    padding-right: 25px;
 }
 .row{
     display: flex;
@@ -46,11 +45,11 @@ p{
     justify-content: space-around;
 }
 .col-2{
-    flex-basis: 50%;
+    flex-basis: 40%;
     min-width: 300px;
 }
 .col-2 img{
-    max-width: 100%;
+    max-width: 90%;
     padding: 50px 0;
 }
 .col-2 h1{
@@ -73,7 +72,8 @@ p{
 }
 
 .header{
-    background: radial-gradient(#fff, #ffd6d6);
+    background: radial-gradient(#fff, #aeacf1);
+    z-index: 200;
 }
 .header .row{
     margin-top: 70px;
@@ -101,8 +101,10 @@ p{
     min-width: 200px;
     margin-bottom: 50px;
     transition: transform 0.5s;
+    text-align: center;
 }
 .col-4 img{
+    
     width: 100%;
 }
 .title{
@@ -177,6 +179,7 @@ h4{
 ul{
     list-style-type: none;
 }
+
 .app-logo{
     margin-top: 20px;
 }
@@ -259,10 +262,8 @@ select:focus{
 }
 
 .number{
-    display: inline-block;
     text-align: center;
     padding: 50px;
-    margin-left: 450px;
 
 }
 
@@ -274,3 +275,5 @@ select:focus{
         flex-basis: 100%;
     }
 }
+
+

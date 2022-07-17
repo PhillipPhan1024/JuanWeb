@@ -48,13 +48,27 @@ if (document.readyState == 'loading') {
 
   // Buy Button
   function buyButtonClicked() {
-    alert('Your Order is Placed');
     var cartContent = document.getElementsByClassName('cart-content')[0];
     while(cartContent.hasChildNodes()) {
       cartContent.removeChild(cartContent.firstChild);
     }
+    sendEmail();
   }
 
+  function sendEmail() {
+    Email.send({
+      Host: "smtp.gmail.com",
+      Username : "LaPaCentroamerican@gmail.com",
+      Password : "rL74c6X7JLAXJuc",
+      To : 'LaPaCentroamerican@gmail.com',
+      From : "LaPaCentroamerican@gmail.com",
+      Subject : "Order Confirmation",
+      Body : "Thank you for purchasing from La Pa Centroamerican",
+    })
+    .then(function(message){
+      alert("Your Order has been Placed!")
+    });
+  }
 
   function removeCartItem(event) {
     var buttonClicked = event.target;
