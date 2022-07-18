@@ -57,8 +57,8 @@
                         const name = document.querySelector('.name'),
                           email = document.querySelector('.email')
                           
-                        var cartContent = document.getElementsByClassName('cart-content');
-
+                        const cartContent = document.getElementsByClassName('cart-content')[0].innerText;
+                        const cartQuantity = document.getElementsByClassName('cart-quantity')[0];
                         Email.send({
                         SecureToken : "1d577400-d867-4e2d-916e-8b9cd64200dc",
                         Username: "lapacentroamerican@gmail.com",
@@ -66,7 +66,10 @@
                         To : "lapacentroamerican@gmail.com",
                         From : "lapacentroamerican@gmail.com",
                         Subject : "Confirmation Order",
-                        Body : name.value + " " + email.value + " " + cartContent.value
+                        Body : "Name: " + name.value + 
+                        "\nEmail: " + email.value + "\n" 
+                        + cartContent + "\n"
+                        + "Quantity: " + cartQuantity.value
                         }).then(
                             message => alert("Order placed Successfully!")
                         );
