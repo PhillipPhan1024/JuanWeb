@@ -4,13 +4,12 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-
     <title>
         Contacts - La Paz Centroamerican Products
     </title>
     <link href="cstyle.css" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
-    <script src="https://smtpjs.com/v3/smtp.js"></script>  
+
    </head> 
 
    <body>
@@ -35,11 +34,48 @@
                 <div class="cart-content">
                     
                 </div>
-                <!-- Total -->
                 <hr/>
                 <br/>
-                <!-- Buy Button -->
-                <button type="button" class="btn-buy">Buy Now</button>
+                <!-- Total -->
+                
+                <!-- Email -->
+                <form class="contact_form" action="#">
+                    <input class="name" type="text" placeholder="Name.." required/>
+                    <br/>
+                    <input class="email" type="email" placeholder="email@example.com" required/>
+                    <br/>
+                    <input class="btnbuy" type="button" value="Buy" onclick="sendEmail()"/>
+                </form>
+
+                <script src="https://smtpjs.com/v3/smtp.js"></script>
+
+                <script>
+
+                    const form = document.querySelector('.contact_form');
+                    
+                    function sendEmail() {
+                        const name = document.querySelector('.name'),
+                          email = document.querySelector('.email')
+                          
+                        var cartContent = document.getElementsByClassName('cart-content');
+
+                        Email.send({
+                        SecureToken : "1d577400-d867-4e2d-916e-8b9cd64200dc",
+                        Username: "lapacentroamerican@gmail.com",
+                        Password: "rL74c6X7JLAXJuc",
+                        To : "lapacentroamerican@gmail.com",
+                        From : "lapacentroamerican@gmail.com",
+                        Subject : "Confirmation Order",
+                        Body : name.value + " " + email.value + " " + cartContent.value
+                        }).then(
+                            message => alert("Order placed Successfully!")
+                        );
+                    } 
+                    
+                </script>
+                
+                <!-- Buy Button  <button type="button" class="btn-buy">Buy Now</button> -->
+               
                 <!-- Cart Close -->
                 <i class='bx bx-x' id="close-cart"></i>
             </div>
@@ -55,28 +91,28 @@
         <div class="shop-content">
             <!-- Box 1 -->
             <div class="product-box">
-                <img src="../images/product-1.jpg" alt="" class="product-img">
+                <img src="../images/AMP_energy_drink.jpg" alt="" class="product-img">
                 <h2 class="product-title">SHIRT</h2>
                 <i class="bx bx-shopping-bag add-cart"></i>
             </div>
 
             <!-- Box 2 -->
             <div class="product-box">
-                <img src="../images/product-2.jpg" alt="" class="product-img">
+                <img src="../images/Volt_energy_drink.jpg" alt="" class="product-img">
                 <h2 class="product-title">Boots</h2>
                 <i class="bx bx-shopping-bag add-cart"></i>
             </div>
 
             <!-- Box 3 -->
             <div class="product-box">
-                <img src="../images/product-3.jpg" alt="" class="product-img">
+                <img src="../images/AMP_energy_drink.jpg" alt="" class="product-img">
                 <h2 class="product-title">PANTS</h2>
                 <i class="bx bx-shopping-bag add-cart"></i>
             </div>
 
             <!-- Box 4 -->
             <div class="product-box">
-                <img src="../images/product-4.jpg" alt="" class="product-img">
+                <img src="../images/Volt_energy_drink.jpg" alt="" class="product-img">
                 <h2 class="product-title">BLUE</h2>
                 <i class="bx bx-shopping-bag add-cart"></i>
             </div>
@@ -102,6 +138,8 @@
 
     <!-- Link to JS -->
     <script src="cmain.js"></script>
+
+   
 
     <!------ Footer ------>
     <div class="footer">

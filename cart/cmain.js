@@ -1,7 +1,6 @@
 let cartIcon = document.querySelector("#cart-icon");
 let cart = document.querySelector(".cart");
 let closeCart = document.querySelector("#close-cart");
-
 //open Cart
 cartIcon.onclick = () => {
   cart.classList.add("active");
@@ -15,8 +14,7 @@ closeCart.onclick = () => {
 //cart Working JS
 
 if (document.readyState == 'loading') {
-    document.addEventListener('DOMContentLoaded', ready);  
-    //loadlocalstorage();
+    document.addEventListener('DOMContentLoaded', ready);
   } else {
     ready();
   }
@@ -42,7 +40,7 @@ if (document.readyState == 'loading') {
       button.addEventListener("click", addCartClicked);
     }
     // Buy Button Work
-    document.getElementsByClassName('btn-buy')[0].addEventListener('click', buyButtonClicked);
+    document.getElementsByClassName('btnbuy')[0].addEventListener('click', buyButtonClicked);
   }
   
 
@@ -52,28 +50,11 @@ if (document.readyState == 'loading') {
     while(cartContent.hasChildNodes()) {
       cartContent.removeChild(cartContent.firstChild);
     }
-    sendEmail();
-  }
-
-  function sendEmail() {
-    Email.send({
-      Host: "smtp.gmail.com",
-      Username : "LaPaCentroamerican@gmail.com",
-      Password : "rL74c6X7JLAXJuc",
-      To : 'LaPaCentroamerican@gmail.com',
-      From : "LaPaCentroamerican@gmail.com",
-      Subject : "Order Confirmation",
-      Body : "Thank you for purchasing from La Pa Centroamerican",
-    })
-    .then(function(message){
-      alert("Your Order has been Placed!")
-    });
   }
 
   function removeCartItem(event) {
     var buttonClicked = event.target;
     buttonClicked.parentElement.remove();
-    //savelocalstorage();
   }
 
  function quantityChanged(event) {
@@ -89,7 +70,6 @@ if (document.readyState == 'loading') {
     var title = shopProducts.getElementsByClassName("product-title")[0].innerText;
     var productImg = shopProducts.getElementsByClassName("product-img")[0].src;
     addProductToCart(title, productImg);
-    //savelocalstorage();
   }
   
   function addProductToCart(title, productImg){
@@ -117,20 +97,3 @@ if (document.readyState == 'loading') {
     cartShopBox.getElementsByClassName('cart-remove')[0].addEventListener('click', removeCartItem)
     cartShopBox.getElementsByClassName('cart-quantity')[0].addEventListener('change', quantityChanged)
   }
-
-  /*//LOCALSTORAGE!!!!!
-  
-  //save
-  function savelocalstorage() {
-    var savelocal = document.getElementById("itemstorage")
-    localStorage.setItem("favorites", savelocal.outerHTML);
-  }
-  //load
-  function loadlocalstorage() {
-    if (localStorage.getItem("favorites")) {
-      document.getElementById("itemstorage").outerHTML = localStorage.getItem("favorites");
-      return;
-    } else {
-      ""
-    }
-  }*/

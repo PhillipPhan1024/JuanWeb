@@ -275,5 +275,12 @@ select:focus{
         flex-basis: 100%;
     }
 }
-
+@media only screen and (max-width: 410px){
+    .row{
+        text-align: center;
+    }
+    .col-2, .col-3, .col-4{
+        flex-basis: 100%;
+    }
+}
 
