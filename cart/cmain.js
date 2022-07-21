@@ -76,7 +76,6 @@ if (document.readyState == 'loading') {
     var cartShopBox = document.createElement('div');
     cartShopBox.classList.add('cart-box');
     var cartItems = document.getElementsByClassName('cart-content')[0];
-    var cartItemsQuan = document.getElementsByClassName('cart-quantity');
     var cartItemsNames = cartItems.getElementsByClassName('cart-product-title');
     for(var i = 0; i < cartItemsNames.length; i++) {
       if(cartItemsNames[i].innerText == title){

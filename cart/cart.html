@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>
-        Contacts - La Paz Centroamerican Products
+        Contacts - La Paz Centroa merican Products
     </title>
     <link href="cstyle.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link href="https://unpkg.com/boxicons@2.1.2/css/boxicons.min.css" rel="stylesheet">
 
    </head> 
@@ -15,80 +16,81 @@
    <body>
     <div class="header">
         <!-- Nav -->
-        <div class="nav container">
-            <a href="../index.html" class="logo">La Paz Centroamerican Products</a>
-            <nav>
-                <ul id="MenuItems">
-                    <li><a href="../index.html">Home</a></li>
-                    <li><a href="cart.html">Products</a></li>
-                    <li><a href="../contact.html">Contact</a></li>
-                    <li><i class='bx bx-shopping-bag' id="cart-icon"></i></li>
-                </ul>
-            </nav>
-            <img src="../images/menu.png" class="menu-icon" 
-            onclick="menutoggle()">
-            <!-- Cart -->
-            <div class="cart">
-                <h2 class="cart-title">Your Cart</h2>
-                <!-- Content -->
-                <div class="cart-content">
+        <div class="container">
+            <div class="navbar">
+                <a href="../index.html" class="logo">La Paz Centroamerican Products</a>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="../index.html">Home</a></li>
+                        <li><a href="cart.html">Products</a></li>
+                        <li><a href="../contact.html">Contact</a></li>
+                        <li><i class='bx bx-shopping-bag' id="cart-icon"></i></li>
+                    </ul>
+                </nav>
+                <img src="../images/menu.png" class="menu-icon" 
+                onclick="menutoggle()">
+                <!-- Cart -->
+                <div class="cart">
+                    <h2 class="cart-title">Your Cart</h2>
+                    <!-- Content -->
+                    <div class="cart-content">
+                        
+                    </div>
+                    <hr/>
+                    <br/>
+                    <!-- Total -->
                     
+                    <!-- Email -->
+                    <form class="contact_form" action="#">
+                        <input class="name" type="text" placeholder="Name.." required/>
+                        <br/>
+                        <input class="email" type="email" placeholder="email@example.com" required/>
+                        <br/>
+                        <input class="btnbuy" type="button" value="Buy" onclick="sendEmail()"/>
+                    </form>
+    
+                    <script src="https://smtpjs.com/v3/smtp.js"></script>
+    
+                    <script>
+    
+                        const form = document.querySelector('.contact_form');
+                        
+                        function sendEmail() {
+                            const name = document.querySelector('.name'),
+                              email = document.querySelector('.email')
+                              
+                            const cartContent = document.getElementsByClassName('cart-content')[0].innerText;
+                            const cartQuantity = document.getElementsByClassName('cart-quantity')[0];
+
+
+                            Email.send({
+                            SecureToken : "1d577400-d867-4e2d-916e-8b9cd64200dc",
+                            To : "lapacentroamerican@gmail.com",    
+                            From : "lapacentroamerican@gmail.com",
+                            Subject : name.value + " Order",
+                            Body : "<h3>Name: "  + name.value + "</h3>" + "<br/>"
+                            + "<h3>Email: " + email.value + "</h3>" + "<br/>"
+                            + "<h3>What " + name.value + " ordered: " + cartContent + "</h3>" + "<br/>" 
+                            + "<h3>" + "Quantity: " + cartQuantity.value + "</h3>"
+                            }).then(
+                                message => alert("Order placed Successfully!")
+                            );
+                        } 
+                        
+                    </script>
+                    
+                    <!-- Buy Button  <button type="button" class="btn-buy">Buy Now</button> -->
+                   
+                    <!-- Cart Close -->
+                    <i class='bx bx-x' id="close-cart"></i>
                 </div>
-                <hr/>
-                <br/>
-                <!-- Total -->
-                
-                <!-- Email -->
-                <form class="contact_form" action="#">
-                    <input class="name" type="text" placeholder="Name.." required/>
-                    <br/>
-                    <input class="email" type="email" placeholder="email@example.com" required/>
-                    <br/>
-                    <input class="btnbuy" type="button" value="Buy" onclick="sendEmail()"/>
-                </form>
-
-                <script src="https://smtpjs.com/v3/smtp.js"></script>
-
-                <script>
-
-                    const form = document.querySelector('.contact_form');
-                    
-                    function sendEmail() {
-                        const name = document.querySelector('.name'),
-                          email = document.querySelector('.email')
-                          
-                        const cartContent = document.getElementsByClassName('cart-content')[0].innerText;
-                        const cartQuantity = document.getElementsByClassName('cart-quantity')[0];
-                        Email.send({
-                        SecureToken : "1d577400-d867-4e2d-916e-8b9cd64200dc",
-                        Username: "lapacentroamerican@gmail.com",
-                        Password: "rL74c6X7JLAXJuc",
-                        To : "lapacentroamerican@gmail.com",
-                        From : "lapacentroamerican@gmail.com",
-                        Subject : "Confirmation Order",
-                        Body : "Name: " + name.value + 
-                        "\nEmail: " + email.value + "\n" 
-                        + cartContent + "\n"
-                        + "Quantity: " + cartQuantity.value
-                        }).then(
-                            message => alert("Order placed Successfully!")
-                        );
-                    } 
-                    
-                </script>
-                
-                <!-- Buy Button  <button type="button" class="btn-buy">Buy Now</button> -->
-               
-                <!-- Cart Close -->
-                <i class='bx bx-x' id="close-cart"></i>
             </div>
-            
-        </div>
+        </div> 
     </div>
 
         
     <!-- Shop -->
-    <section class="shop container">
+    <section class="shop small-container">
         <h1 class="section-title">All Products</h1>
         <!-- Content -->
         <div class="shop-content">
