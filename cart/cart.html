@@ -41,43 +41,63 @@
                     <!-- Total -->
                     
                     <!-- Email -->
-                    <form class="contact_form" action="#">
-                        <input class="name" type="text" placeholder="Name.." required/>
+                    <form class="contact_form" action="../index.html">
+                        <input class="name" type="text" placeholder="Name.." required autocomplete/>
                         <br/>
-                        <input class="email" type="email" placeholder="email@example.com" required/>
+                        <input class="email" type="email" placeholder="email@example.com" required autocomplete/>
                         <br/>
                         <input class="btnbuy" type="button" value="Buy" onclick="sendEmail()"/>
                     </form>
     
                     <script src="https://smtpjs.com/v3/smtp.js"></script>
-    
+                    
                     <script>
-    
+                        function makeid() {
+                            var result           = '';
+                            var characters       = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+                            var charactersLength = characters.length;
+                            for ( var i = 0; i < 6; i++ ) {
+                                result += characters.charAt(Math.floor(Math.random() * charactersLength));
+                            }
+                            return result;
+                        }
+                    </script>
+
+                    <script>
                         const form = document.querySelector('.contact_form');
                         
                         function sendEmail() {
                             const name = document.querySelector('.name'),
-                              email = document.querySelector('.email')
+                              email = document.querySelector('.email');
                               
-                            const cartContent = document.getElementsByClassName('cart-content')[0].innerText;
-                            const cartQuantity = document.getElementsByClassName('cart-quantity')[0];
-
-
+                            var cartContent = document.getElementsByClassName('cart-content')[0].innerText.split("\n");
+                            const cartQuantity = document.getElementsByClassName('cart-quantity');
+                            const space = " ";
+                            var cartEverything = "";  
+                    
+                            for(var i = 0; i < cartQuantity.length; i++)  {
+                                cartEverything += cartContent[i] + space + cartQuantity[i].value + "<br/>"; 
+                            }
+                    
                             Email.send({
                             SecureToken : "1d577400-d867-4e2d-916e-8b9cd64200dc",
-                            To : "lapacentroamerican@gmail.com",    
-                            From : "lapacentroamerican@gmail.com",
-                            Subject : name.value + " Order",
+                            To : email.value,    
+                            From : "LaPaCentroamerican@gmail.com",
+                            Subject : name.value + "'s Order",
                             Body : "<h3>Name: "  + name.value + "</h3>" + "<br/>"
                             + "<h3>Email: " + email.value + "</h3>" + "<br/>"
-                            + "<h3>What " + name.value + " ordered: " + cartContent + "</h3>" + "<br/>" 
-                            + "<h3>" + "Quantity: " + cartQuantity.value + "</h3>"
+                            + "<h3>Confirmation Number: " + makeid() + "</h3>" + "<br/>"
+                            + "<h3>Order: <br/>" + cartEverything +"</h3>"
                             }).then(
-                                message => alert("Order placed Successfully!")
+                                message => alert("Order placed Successfully!"),
+                                name.value = "",
+                                email.value = ""
                             );
                         } 
                         
                     </script>
+
+
                     
                     <!-- Buy Button  <button type="button" class="btn-buy">Buy Now</button> -->
                    
