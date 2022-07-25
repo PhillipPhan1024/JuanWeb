@@ -200,6 +200,11 @@ ul{
     margin-left: 20px;
     display: none;
 }
+.product-img{
+    width: 100%;
+    height: 225px; /* originally auto */
+    margin-bottom: 0.5rem;
+}
 
 /*------ media query for menu ------ */
 
