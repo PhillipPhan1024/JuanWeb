@@ -4,7 +4,6 @@ let closeCart = document.querySelector("#close-cart");
 //open Cart
 cartIcon.onclick = () => {
   cart.classList.add("active");
-  console.log("Hit");
 }
 //close cart
 closeCart.onclick = () => {
